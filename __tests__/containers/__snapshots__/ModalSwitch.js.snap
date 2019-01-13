@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Users component renders as expected 1`] = `
+<Fragment>
+  <Switch
+    location={
+      Object {
+        "state": Object {
+          "modal": true,
+        },
+      }
+    }
+  >
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/beer/:id"
+    />
+    <Route
+      component={[Function]}
+    />
+  </Switch>
+  <Route
+    component={[Function]}
+    path="/beer/:id"
+  />
+</Fragment>
+`;

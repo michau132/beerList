@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CloseBtn /> component matching snapshot 1`] = `
+<Link
+  replace={false}
+  to={
+    Object {
+      "pathname": "/",
+      "state": Object {
+        "modal": false,
+      },
+    }
+  }
+>
+  <styled.div />
+</Link>
+`;

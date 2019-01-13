@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing LastBeer HOC should match snapshot 1`] = `
+<Fragment>
+  <component
+    lastBeer={true}
+  />
+  <div>
+    <h2>
+      Sorry there is no more beer
+    </h2>
+    <styled.div>
+      <Image
+        alt="no beer"
+        src="https://previews.123rf.com/images/alexutemov/alexutemov1605/alexutemov160500656/56958969-stop-drink-no-beer-design-and-vector-illustration-stop-drink-stop-drink-alcohol-glass-no-sign-beer-s.jpg"
+      />
+    </styled.div>
+  </div>
+</Fragment>
+`;

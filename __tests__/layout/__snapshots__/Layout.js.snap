@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing Layout component to match snapshot 1`] = `
+<Fragment>
+  <GlobalStyleComponent
+    suppressMultiMountWarning={false}
+  />
+  <styled.div />
+</Fragment>
+`;

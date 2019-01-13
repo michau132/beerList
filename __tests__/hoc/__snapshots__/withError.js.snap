@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing withError HOC should match snapshot 1`] = `
+<Fragment>
+  <CloseBtn />
+  <styled.p>
+    Ups something goes wrong
+  </styled.p>
+</Fragment>
+`;

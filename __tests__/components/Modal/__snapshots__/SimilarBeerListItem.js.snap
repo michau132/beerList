@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SimilarBeerListItem /> component matching snapshot 1`] = `
+<styled.li
+  key="1"
+>
+  <Link
+    replace={false}
+    to={
+      Object {
+        "pathname": "/beer/1",
+        "state": Object {
+          "modal": true,
+        },
+      }
+    }
+  >
+    <styled.div>
+      <Image
+        alt="Beer"
+        src="https://via.placeholder.com/150"
+      />
+    </styled.div>
+    <styled.div>
+      Beer
+    </styled.div>
+  </Link>
+</styled.li>
+`;
