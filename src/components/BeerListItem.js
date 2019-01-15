@@ -1,6 +1,10 @@
+/* eslint-disable react/no-unused-prop-types */
+/* eslint-disable react/prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { withRouter } from 'react-router';
+import { compose } from 'recompose';
+import { observer, inject } from 'mobx-react';
 import Image from './Image';
 
 const BeerListItemStyle = styled.li`
@@ -36,29 +40,44 @@ const BeerDesc = styled.div`
 `;
 
 const BeerListItem = ({
-  id, image_url, name, tagline, handleClick,
-}) => (
-  <BeerListItemStyle
-    onClick={() => handleClick(id)}
-  >
-    <div>
-      <ImgWrapper>
-        <Image src={image_url} alt={name} />
-      </ImgWrapper>
-    </div>
-    <BeerName>{name}</BeerName>
-    <BeerDesc>
-      {tagline}
-    </BeerDesc>
-  </BeerListItemStyle>
-);
-
-BeerListItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  image_url: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  tagline: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  beer, ModalStore, history,
+}) => {
+  const {
+    id, image_url, name, tagline,
+  } = beer;
+  const handleClick = () => {
+    history.push({
+      pathname: `/${id}`,
+      state: { modal: true },
+    });
+    ModalStore.showBeerDetails(beer);
+  };
+  return (
+    <BeerListItemStyle
+      onClick={handleClick}
+    >
+      <div>
+        <ImgWrapper>
+          <Image src={image_url} alt={name} />
+        </ImgWrapper>
+      </div>
+      <BeerName>{name}</BeerName>
+      <BeerDesc>
+        {tagline}
+      </BeerDesc>
+    </BeerListItemStyle>
+  );
 };
 
-export default BeerListItem;
+// BeerListItem.propTypes = {
+//   id: PropTypes.number.isRequired,
+//   image_url: PropTypes.string.isRequired,
+//   name: PropTypes.string.isRequired,
+//   tagline: PropTypes.string.isRequired,
+// };
+
+export default compose(
+  inject('ModalStore'),
+  observer,
+  withRouter,
+)(BeerListItem);

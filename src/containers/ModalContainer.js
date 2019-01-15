@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { inject, observer, PropTypes as MobXPropTypes } from 'mobx-react';
 import { toJS } from 'mobx';
+import CloseBtn from '../components/CloseBtn';
+import Modal from '../components/Modal';
 
 const ModalWrapper = styled.div`
   position: fixed;
@@ -26,10 +28,11 @@ const ModalWrapper = styled.div`
 const ModalStyles = styled.div`
   background-color: #fff;
   padding: 10px;
-  height: 100%;
+  position: relative;
+  overflow: hidden;
+  ${({ loadingOrError }) => (loadingOrError ? 'height: 400px' : '')}
   
   @media (min-width: 1024px) {
-    height: calc(100vh - 40px);
     width: 910px;
   }
 `;
@@ -47,19 +50,30 @@ class ModalContainer extends Component {
   }
 
   componentDidMount() {
-    const { match, ModalStore } = this.props;
-    ModalStore.getBeer(match.params.id);
+    const { match: { params: { id } }, ModalStore } = this.props;
+    ModalStore.getBeer(id);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { match: { params: { id } }, ModalStore } = this.props;
+    if (prevProps.match.params.id !== id) {
+      ModalStore.getBeer(id);
+    }
   }
 
   render() {
-    const { ModalStore, render } = this.props;
+    const { ModalStore } = this.props;
     const store = toJS(ModalStore);
+    const { loading, error } = store;
     return (
+
       <ModalWrapper>
-        <ModalStyles>
-          {render({ ...store })}
+        <ModalStyles loadingOrError={(loading || error) ? 1 : 0}>
+          <CloseBtn />
+          <Modal {...store} />
         </ModalStyles>
       </ModalWrapper>
+
     );
   }
 }

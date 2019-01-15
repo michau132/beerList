@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import LazyLoad from 'react-lazyload';
 
 const ImageStyles = styled.img`
   object-fit: contain;
@@ -11,7 +12,9 @@ const ImageStyles = styled.img`
 `;
 
 const Image = ({ src, alt }) => (
-  <ImageStyles src={src} alt={alt} />
+  <LazyLoad overflow height={180} offset={100}>
+    <ImageStyles src={src} alt={alt} />
+  </LazyLoad>
 );
 
 Image.propTypes = {

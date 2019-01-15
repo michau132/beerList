@@ -25,14 +25,17 @@ const LoadingWrapper = styled.div`
   position: relative;
 `;
 
+
 const withLoading = Component => (props) => {
-  const {
-    loading, beerList, beer,
-  } = props;
-  // checking if the modal is rendering
+  // checking if the modal is rendering and return only LoadingSpinner
+  const { loading, beer } = props;
   if (beer && loading) {
-    return <LoadingSpinner />;
+    return (
+      <LoadingSpinner />);
   }
+
+  // checking if beerlist is rendering or loading more beers
+  const { BeerListStore: { beerList, loading: loadingBeers } = {} } = props;
 
   // positioning spinner to infinite scroll and if beerList have data make position to bottom: 0;
   let loadingPosition;
@@ -42,7 +45,7 @@ const withLoading = Component => (props) => {
   return (
     <LoadingWrapper>
       <Component {...props} />
-      {loading && <LoadingSpinner loadingPosition={loadingPosition} />}
+      {loadingBeers && <LoadingSpinner loadingPosition={loadingPosition} />}
     </LoadingWrapper>
   );
 };

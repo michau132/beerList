@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { inject } from 'mobx-react';
 import Image from '../Image';
 
 const mediaTablet = ({ theme }) => theme.media.tablet;
@@ -78,7 +79,11 @@ const Description = styled.p`
 
 
 const BeerDetails = ({
-  image_url, name, tagline, ibu, abv, ebc, description,
+  ModalStore: {
+    beer: {
+      image_url, name, tagline, ibu, abv, ebc, description,
+    },
+  },
 }) => (
   <BeerDetailsCnt>
     <ImgWrapper>
@@ -117,15 +122,15 @@ BeerDetails.defaultProps = {
 };
 
 
-BeerDetails.propTypes = {
-  image_url: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  tagline: PropTypes.string.isRequired,
-  ibu: PropTypes.number,
-  abv: PropTypes.number,
-  ebc: PropTypes.number,
-  description: PropTypes.string.isRequired,
-};
+// BeerDetails.propTypes = {
+//   image_url: PropTypes.string.isRequired,
+//   name: PropTypes.string.isRequired,
+//   tagline: PropTypes.string.isRequired,
+//   ibu: PropTypes.number,
+//   abv: PropTypes.number,
+//   ebc: PropTypes.number,
+//   description: PropTypes.string.isRequired,
+// };
 
 
-export default BeerDetails;
+export default inject('ModalStore')(BeerDetails);

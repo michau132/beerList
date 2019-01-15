@@ -1,8 +1,10 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/no-unused-prop-types */
+/* eslint-disable react/prop-types */
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { compose } from 'recompose';
-import { observer } from 'mobx-react';
-import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react';
 import withLoading from '../hoc/withLoading';
 import withError from '../hoc/withError';
 import BeerListItem from './BeerListItem';
@@ -18,31 +20,30 @@ const BeerListStyle = styled.ul`
   margin-bottom: 30px;
 `;
 
-const BeerList = ({ beerList, handleClick }) => (
+const BeerList = ({ BeerListStore: { beerList } }) => (
   <BeerListStyle>
     {
-      beerList.map(beer => (
-        <Fragment key={beer.id}>
-          <BeerListItem
-            handleClick={handleClick}
-            {...beer}
-          />
-        </Fragment>
-      ))
+        beerList.map(beer => (
+          <Fragment key={beer.id}>
+            <BeerListItem
+              beer={beer}
+            />
+          </Fragment>
+        ))
     }
   </BeerListStyle>
 );
 
-BeerList.propTypes = {
-  beerList: PropTypes.arrayOf(PropTypes.shape({
-    image_url: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    tagline: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
-  handleClick: PropTypes.func.isRequired,
-};
+// BeerList.propTypes = {
+//   beerList: PropTypes.arrayOf(PropTypes.shape({
+//     image_url: PropTypes.string.isRequired,
+//     name: PropTypes.string.isRequired,
+//     tagline: PropTypes.string.isRequired,
+//   }).isRequired).isRequired,
+// };
 
 export default compose(
+  inject('BeerListStore'),
   observer,
   withLoading,
   withError,

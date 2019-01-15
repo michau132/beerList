@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { inject } from 'mobx-react';
 import FoodPairListItem from './FoodPairListItem';
 
 const FoodPairListStyle = styled.ul`
@@ -13,7 +14,13 @@ const FoodPairListStyle = styled.ul`
   }
 `;
 
-const FoodPairList = ({ food_pairing }) => (
+const FoodPairList = ({
+  ModalStore: {
+    beer: {
+      food_pairing,
+    },
+  },
+}) => (
   <FoodPairListStyle>
     <h4>Best served with:</h4>
     {
@@ -24,8 +31,8 @@ const FoodPairList = ({ food_pairing }) => (
   </FoodPairListStyle>
 );
 
-FoodPairList.propTypes = {
-  food_pairing: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
+// FoodPairList.propTypes = {
+//   food_pairing: PropTypes.arrayOf(PropTypes.string).isRequired,
+// };
 
-export default FoodPairList;
+export default inject('ModalStore')(FoodPairList);

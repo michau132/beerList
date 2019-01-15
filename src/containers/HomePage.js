@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { inject, observer, PropTypes as MobXPropTypes } from 'mobx-react';
+import { inject, PropTypes as MobXPropTypes } from 'mobx-react';
 import styled from 'styled-components';
-import { toJS } from 'mobx';
+import BeerList from '../components/BeerList';
+import Header from '../components/Header';
 
 
 const Main = styled.main`
   overflow-y: auto;
 `;
 
-@inject('BeerListStore', 'ModalStore')
-@observer
-class BeerListContainer extends Component {
+@inject('BeerListStore')
+class HomePage extends Component {
   static propTypes ={
     BeerListStore: MobXPropTypes.observableObject.isRequired,
-    ModalStore: MobXPropTypes.observableObject.isRequired,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
       action: PropTypes.string.isRequired,
@@ -26,6 +25,12 @@ class BeerListContainer extends Component {
       }),
     }).isRequired,
   }
+
+  constructor(props) {
+    super(props);
+    this.scroller = React.createRef();
+  }
+
 
   componentDidMount() {
     const {
@@ -44,7 +49,7 @@ class BeerListContainer extends Component {
     }
   }
 
-  scroll = () => {
+  handleScroll = () => {
     const { BeerListStore } = this.props;
     const { loading, error, lastBeer } = BeerListStore;
     const { scroller } = this;
@@ -59,34 +64,19 @@ class BeerListContainer extends Component {
     }
   }
 
-  handleClick = (id) => {
-    const { BeerListStore, ModalStore, history } = this.props;
-    const BeerStore = toJS(BeerListStore);
-    const foundBeer = BeerStore.beerList.find(beer => beer.id === id);
-    history.push({
-      pathname: `/${id}`,
-      state: { modal: true },
-    });
-    ModalStore.showBeerDetails(foundBeer);
-  }
-
   render() {
-    const { BeerListStore, render } = this.props;
-    const { handleClick } = this;
-    const store = toJS(BeerListStore);
     return (
       <Main
-        onScroll={this.scroll}
+        onScroll={this.handleScroll}
         ref={(scroller) => {
           this.scroller = scroller;
         }}
       >
-        {
-          render({ handleClick, ...store })
-        }
+        <Header />
+        <BeerList />
       </Main>
     );
   }
 }
 
-export default BeerListContainer;
+export default HomePage;
