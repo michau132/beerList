@@ -6,7 +6,7 @@ const spin = keyframes`
   100% { transform: rotate(360deg); }
 `;
 
-const LoadingSpinner = styled.div`
+export const LoadingSpinner = styled.div`
   ${({ loadingPosition }) => (loadingPosition
     ? 'position: absolute; bottom: 0'
     : 'position: fixed; top: 40%'

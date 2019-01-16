@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { compose } from 'recompose';
 import { Spring } from 'react-spring';
@@ -28,23 +27,7 @@ export const Modal = () => (
 );
 
 
-// Modal.propTypes = {
-//   beer: PropTypes.shape({
-//     image_url: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//     tagline: PropTypes.string.isRequired,
-//     ibu: PropTypes.number,
-//     abv: PropTypes.number,
-//     ebc: PropTypes.number,
-//     description: PropTypes.string.isRequired,
-//     food_pairing: PropTypes.arrayOf(PropTypes.string).isRequired,
-//   }).isRequired,
-//   similarBeers: PropTypes.arrayOf(PropTypes.shape({
-//     id: PropTypes.number.isRequired,
-//     image_url: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//   })).isRequired,
-// };
-
-
-export default compose(withLoading, withError)(Modal);
+export default compose(
+  withLoading,
+  withError,
+)(Modal);

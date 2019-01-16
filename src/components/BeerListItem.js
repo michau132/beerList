@@ -58,7 +58,7 @@ const BeerListItem = ({
     >
       <div>
         <ImgWrapper>
-          <Image src={image_url} alt={name} />
+          <Image src={image_url} alt={name} overflow />
         </ImgWrapper>
       </div>
       <BeerName>{name}</BeerName>

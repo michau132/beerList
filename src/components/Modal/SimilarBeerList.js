@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import { inject } from 'mobx-react';
+import { inject, PropTypes } from 'mobx-react';
 import SimilarBeerListItem from './SimilarBeerListItem';
 
 const BeerListTitle = styled.h3`
@@ -33,12 +32,8 @@ const SimilarBeerList = ({ ModalStore: { similarBeers } }) => (
   </div>
 );
 
-// SimilarBeerList.propTypes = {
-//   similarBeers: PropTypes.arrayOf(PropTypes.shape({
-//     id: PropTypes.number.isRequired,
-//     image_url: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//   })).isRequired,
-// };
+SimilarBeerList.propTypes = {
+  ModalStore: PropTypes.observableObject.isRequired,
+};
 
 export default inject('ModalStore')(SimilarBeerList);
