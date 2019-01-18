@@ -25,7 +25,7 @@ const withError = Component => (props) => {
     );
   }
 
-  // error on HomePage container when it fails loading
+  // error on HomePage container when it fails loadings
   const { BeerListStore: { error: errorOnHomePage } = {} } = props;
 
   return (
