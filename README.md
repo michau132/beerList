@@ -2,7 +2,7 @@
 
 
 ## Live demo
-Live example: https://michau132.github.io/beerList/#/
+Live example: https://michau132.github.io/beerList/
 
 
 ## Installation
