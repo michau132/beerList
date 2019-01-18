@@ -37,7 +37,6 @@ class ModalSwitch extends Component {
     );
     return (
       <Fragment>
-
         <Switch location={isModal ? this.previousLocation : location}>
           <Route
             exact

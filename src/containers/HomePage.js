@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { inject, PropTypes as MobXPropTypes } from 'mobx-react';
+import { observer, inject, PropTypes as MobXPropTypes } from 'mobx-react';
 import styled from 'styled-components';
 import BeerList from '../components/BeerList';
 import Header from '../components/Header';
@@ -11,6 +11,7 @@ const Main = styled.main`
 `;
 
 @inject('BeerListStore')
+@observer
 class HomePage extends Component {
   static propTypes ={
     BeerListStore: MobXPropTypes.observableObject.isRequired,
@@ -38,16 +39,25 @@ class HomePage extends Component {
     } = this.props;
     if (match.params && match.params.id && history.action !== 'PUSH') {
       history.push({
-        pathname: `/${match.params.id}`,
         state: { modal: true },
       });
       BeerListStore.getBeers();
     }
 
     if (match.path === '/' && history.action !== 'PUSH') {
+      console.log('jestem tutaj');
       BeerListStore.getBeers();
     }
+    console.log(this.props);
   }
+
+
+  // componentDidUpdate(prevProps) {
+  //   const {
+  //     match, BeerListStore, history,
+  //   } = this.props;
+  //   if(prevProps.match)
+  // }
 
   handleScroll = () => {
     const { BeerListStore } = this.props;
@@ -63,6 +73,7 @@ class HomePage extends Component {
       BeerListStore.getBeers();
     }
   }
+
 
   render() {
     return (

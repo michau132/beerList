@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'mobx-react';
 import { ThemeProvider } from 'styled-components';
 import {
-  HashRouter,
+  BrowserRouter,
   Route,
 } from 'react-router-dom';
 import { configure } from 'mobx';
@@ -15,13 +15,13 @@ configure({ enforceActions: 'always' });
 
 const App = () => (
   <Provider {...stores}>
-    <HashRouter>
+    <BrowserRouter>
       <ThemeProvider theme={theme}>
         <Layout>
           <Route component={ModalSwitch} />
         </Layout>
       </ThemeProvider>
-    </HashRouter>
+    </BrowserRouter>
   </Provider>
 );
 
