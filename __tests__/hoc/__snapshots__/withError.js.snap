@@ -2,9 +2,8 @@
 
 exports[`testing withError HOC should match snapshot 1`] = `
 <Fragment>
-  <CloseBtn />
   <styled.p>
-    Ups something goes wrong
+    Cannot get data, check your internet connection
   </styled.p>
 </Fragment>
 `;

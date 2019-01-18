@@ -1,10 +1,9 @@
-/* eslint-disable react/no-unused-prop-types */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router';
 import { compose } from 'recompose';
-import { observer, inject } from 'mobx-react';
+import { observer, inject, PropTypes as MobxPropTypes } from 'mobx-react';
+import PropTypes from 'prop-types';
 import Image from './Image';
 
 const BeerListItemStyle = styled.li`
@@ -39,7 +38,7 @@ const BeerDesc = styled.div`
   color: #b7b7b7;
 `;
 
-const BeerListItem = ({
+export const BeerListItem = ({
   beer, ModalStore, history,
 }) => {
   const {
@@ -69,12 +68,16 @@ const BeerListItem = ({
   );
 };
 
-// BeerListItem.propTypes = {
-//   id: PropTypes.number.isRequired,
-//   image_url: PropTypes.string.isRequired,
-//   name: PropTypes.string.isRequired,
-//   tagline: PropTypes.string.isRequired,
-// };
+BeerListItem.propTypes = {
+  beer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    image_url: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    tagline: PropTypes.string.isRequired,
+  }).isRequired,
+  ModalStore: MobxPropTypes.observableObject.isRequired,
+
+};
 
 export default compose(
   inject('ModalStore'),

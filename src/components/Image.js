@@ -49,7 +49,7 @@ const Image = ({
       placeholder={<LoadingSpinner />}
       debounce={500}
     >
-      <ImageStyles src={src} alt={alt} />
+      <ImageStyles src={src} alt={alt} data-test="image" />
     </LazyLoad>
   );
 };

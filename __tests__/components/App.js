@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from '../../src/containers/App';
+import App from '../../src/components/App';
 import ModalSwitch from '../../src/containers/ModalSwitch';
 
 describe('testing App component', () => {

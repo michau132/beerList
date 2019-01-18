@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import ModalSwitch, { WrappedBeerList } from '../../src/containers/ModalSwitch';
+import ModalSwitch from '../../src/containers/ModalSwitch';
+import HomePage from '../../src/containers/HomePage';
+import ModalContainer from '../../src/containers/ModalContainer';
 
 const props = {
   location: {
@@ -11,7 +13,7 @@ const props = {
   },
 };
 
-describe('Users', () => {
+describe('<ModalSwitch/>', () => {
   describe('component', () => {
     let wrapper;
 
@@ -27,16 +29,16 @@ describe('Users', () => {
       expect(wrapper).toBeDefined();
     });
 
-    test('routes "/" to WrappedBeerList', () => {
-      expect(wrapper.find('Route[exact=true][path="/"]').first().prop('component')).toBe(WrappedBeerList);
+    test('routes "/" to HomePage', () => {
+      expect(wrapper.find('Route[exact=true][path="/"]').first().prop('component')).toBe(HomePage);
     });
 
-    test('routes "/beer/:id" to WrappedBeerList', () => {
-      expect(wrapper.find('Route[exact=true][path="/beer/:id"]').first().prop('component')).toBe(WrappedBeerList);
+    test('routes "/:id" to HomePage', () => {
+      expect(wrapper.find('Route[exact=true][path="/:id"]').first().prop('component')).toBe(HomePage);
     });
 
-    test('routes "/beer/:id" and should be defined', () => {
-      expect(wrapper.find('Route[path="/beer/:id"]').not('[exact=true]').prop('component')).toBeDefined();
+    test('routes "/:id" and should be defined', () => {
+      expect(wrapper.find('Route[path="/:id"]').not('[exact=true]').prop('component')).toBe(ModalContainer);
     });
   });
 });

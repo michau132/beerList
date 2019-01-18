@@ -24,8 +24,8 @@ describe('<Image /> component', () => {
   });
 
   test('renders Image correctly', () => {
-    expect(wrapper.prop('src')).toEqual(props.src);
-    expect(wrapper.prop('alt')).toEqual(props.alt);
+    const image = wrapper.find('[data-test="image"]');
+    expect(image.prop('src')).toEqual(props.src);
+    expect(image.prop('alt')).toEqual(props.alt);
   });
-
 });

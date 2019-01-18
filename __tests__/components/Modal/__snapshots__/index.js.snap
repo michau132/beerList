@@ -1,47 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Modal /> component matching snapshot 1`] = `
-<Fragment>
-  <CloseBtn />
-  <BeerDetails
-    abv={6}
-    description="Some description"
-    ebc={32}
-    food_pairing={
-      Array [
-        "meat",
-        "vegetables",
-      ]
+<div
+  style={
+    Object {
+      "height": "auto",
+      "position": "absolute",
+      "transform": "scale3d(1, 1, 1)",
+      "visibility": "hidden",
     }
-    ibu={12}
-    id={1}
-    image_url="https://via.placeholder.com/150"
-    name="Beer"
-    tagline="Drink or die"
-  />
-  <FoodPairList
-    food_pairing={
-      Array [
-        "meat",
-        "vegetables",
-      ]
-    }
-  />
-  <SimilarBeerList
-    similarBeers={
-      Array [
-        Object {
-          "id": 1,
-          "image_url": "https://via.placeholder.com/150",
-          "name": "Beer",
-        },
-        Object {
-          "id": 2,
-          "image_url": "https://via.placeholder.com/300",
-          "name": "Second One",
-        },
-      ]
-    }
-  />
-</Fragment>
+  }
+>
+  <inject-BeerDetails-with-ModalStore />
+  <inject-FoodPairList-with-ModalStore />
+  <inject-SimilarBeerList-with-ModalStore />
+</div>
 `;

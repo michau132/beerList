@@ -1,8 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Image /> component matching snapshot 1`] = `
-<styled.img
-  alt="Beer"
-  src="https://via.placeholder.com/150"
-/>
+<LazyLoad
+  debounce={500}
+  height={180}
+  offset={100}
+  once={true}
+  overflow={false}
+  placeholder={<ForwardRef />}
+  resize={false}
+  scroll={true}
+  unmountIfInvisible={false}
+>
+  <styled.img
+    alt="Beer"
+    data-test="image"
+    src="https://via.placeholder.com/150"
+  />
+</LazyLoad>
 `;

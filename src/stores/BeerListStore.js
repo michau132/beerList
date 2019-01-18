@@ -14,6 +14,8 @@ class BeerListStore {
 
   @observable lastBeer = false;
 
+  @observable errorUrl = false;
+
   fetchData(url) {
     this.loading = true;
     return axios.get(url).then(data => data.data);
@@ -50,6 +52,10 @@ class BeerListStore {
           this.loading = false;
         });
       });
+  }
+
+  @action setError = () => {
+    this.errorUrl = true;
   }
 }
 

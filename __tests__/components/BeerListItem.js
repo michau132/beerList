@@ -1,7 +1,12 @@
 import React from 'react';
+import { observable } from 'mobx';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import BeerListItem from '../../src/components/BeerListItem';
+import { BeerListItem } from '../../src/components/BeerListItem';
+
+const ModalStore = observable({
+  showBeerDetails: jest.fn(),
+});
 
 describe('<BeerListItem /> component', () => {
   let props;
@@ -9,11 +14,17 @@ describe('<BeerListItem /> component', () => {
 
   beforeEach(() => {
     props = {
-      id: 1,
-      image_url: 'https://via.placeholder.com/150',
-      name: 'Beer',
-      tagline: 'Drink or die',
-      handleClick: jest.fn(),
+      beer: {
+        id: 1,
+        image_url: 'https://via.placeholder.com/150',
+        name: 'Beer',
+        tagline: 'Drink or die',
+      },
+      ModalStore,
+      history: {
+        push: jest.fn(),
+      },
+
     };
     wrapper = shallow(<BeerListItem {...props} />);
   });
@@ -28,12 +39,16 @@ describe('<BeerListItem /> component', () => {
 
   test('renders Image correctly', () => {
     const img = wrapper.find('Image');
-    expect(img.prop('src')).toEqual(props.image_url);
-    expect(img.prop('alt')).toEqual(props.name);
+    expect(img.prop('src')).toEqual(props.beer.image_url);
+    expect(img.prop('alt')).toEqual(props.beer.name);
   });
 
   test('firing handleClick ', () => {
-    wrapper.simulate('click', { id: 1 });
-    expect(props.handleClick).toHaveBeenCalledWith(props.id);
+    wrapper.simulate('click');
+    expect(props.history.push).toHaveBeenCalledWith({
+      pathname: '/1',
+      state: { modal: true },
+    });
+    expect(props.ModalStore.showBeerDetails).toHaveBeenCalledWith(props.beer);
   });
 });

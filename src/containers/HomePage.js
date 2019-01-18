@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { observer, inject, PropTypes as MobXPropTypes } from 'mobx-react';
 import styled from 'styled-components';
 import BeerList from '../components/BeerList';
@@ -15,27 +14,27 @@ const Main = styled.main`
 class HomePage extends Component {
   static propTypes ={
     BeerListStore: MobXPropTypes.observableObject.isRequired,
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired,
-      action: PropTypes.string.isRequired,
-    }).isRequired,
-    match: PropTypes.shape({
-      path: PropTypes.string.isRequired,
-      params: PropTypes.shape({
-        id: PropTypes.string,
-      }),
-    }).isRequired,
   }
 
   constructor(props) {
     super(props);
     this.scroller = React.createRef();
+    this.state = {
+      isCorrectUrl: true,
+    };
   }
 
 
   componentDidMount() {
-    const { BeerListStore } = this.props;
-    BeerListStore.getBeers();
+    const { BeerListStore, match: { params: { id } } } = this.props;
+    // eslint-disable-next-line no-restricted-globals
+    if (isNaN(id)) {
+      this.setState({
+        isCorrectUrl: false,
+      });
+    } else {
+      BeerListStore.getBeers();
+    }
   }
 
   handleScroll = () => {
@@ -55,6 +54,7 @@ class HomePage extends Component {
 
 
   render() {
+    const { isCorrectUrl } = this.state;
     return (
       <Main
         onScroll={this.handleScroll}
@@ -64,6 +64,18 @@ class HomePage extends Component {
       >
         <Header />
         <BeerList />
+        {!isCorrectUrl && (
+        <p>
+          Cannot get data, provided url at the end does not match number.
+          Correct url should replace
+          {' '}
+          <strong>{`${window.location.hash.substring(2)} `}</strong>
+           with number like
+          {' '}
+          <strong>1</strong>
+          .
+        </p>
+        )}
       </Main>
     );
   }

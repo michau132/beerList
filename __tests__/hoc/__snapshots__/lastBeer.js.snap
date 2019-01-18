@@ -12,6 +12,8 @@ exports[`testing LastBeer HOC should match snapshot 1`] = `
     <styled.div>
       <Image
         alt="no beer"
+        modal={false}
+        overflow={false}
         src="https://previews.123rf.com/images/alexutemov/alexutemov1605/alexutemov160500656/56958969-stop-drink-no-beer-design-and-vector-illustration-stop-drink-stop-drink-alcohol-glass-no-sign-beer-s.jpg"
       />
     </styled.div>

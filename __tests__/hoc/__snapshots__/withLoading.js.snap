@@ -5,6 +5,5 @@ exports[`testing withLoading HOC should match snapshot 1`] = `
   <component
     loading={true}
   />
-  <styled.div />
 </styled.div>
 `;

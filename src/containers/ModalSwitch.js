@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import HomePage from './HomePage';
 import ModalContainer from './ModalContainer';
-
+import NotFoundPage from '../components/NotFoundPage';
 
 class ModalSwitch extends Component {
   static propTypes = {
@@ -31,11 +31,14 @@ class ModalSwitch extends Component {
 
   render() {
     const { location } = this.props;
+    const path = location.pathname.substring(1);
     const isModal = !!(
-      location.pathname !== '/'
+      // eslint-disable-next-line no-restricted-globals
+      !isNaN(path)
       || (location.state
       && location.state.modal)
     );
+    console.log(this.props);
     return (
       <Fragment>
         <Switch location={isModal ? this.previousLocation : location}>
@@ -49,6 +52,7 @@ class ModalSwitch extends Component {
             exact
             component={HomePage}
           />
+          <Route path="*" component={NotFoundPage} />
         </Switch>
         {isModal ? (
           <Route

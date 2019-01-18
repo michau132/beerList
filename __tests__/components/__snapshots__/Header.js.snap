@@ -4,7 +4,7 @@ exports[`<Header /> component matching snapshot 1`] = `
 <styled.h1>
   beer
   <span>
-    guru
+    list
   </span>
 </styled.h1>
 `;

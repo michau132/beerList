@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { inject, observer, PropTypes as MobXPropTypes } from 'mobx-react';
 import { toJS } from 'mobx';
 import CloseBtn from '../components/CloseBtn';
@@ -42,11 +41,6 @@ const ModalStyles = styled.div`
 class ModalContainer extends Component {
   static propTypes = {
     ModalStore: MobXPropTypes.observableObject.isRequired,
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        id: PropTypes.string,
-      }),
-    }).isRequired,
   }
 
   componentDidMount() {
@@ -66,14 +60,12 @@ class ModalContainer extends Component {
     const store = toJS(ModalStore);
     const { loading, error } = store;
     return (
-
       <ModalWrapper>
         <ModalStyles loadingOrError={(loading || error) ? 1 : 0}>
           <CloseBtn />
           <Modal {...store} />
         </ModalStyles>
       </ModalWrapper>
-
     );
   }
 }

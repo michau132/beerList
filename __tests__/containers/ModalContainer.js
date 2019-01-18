@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { observable } from 'mobx';
 import ModalContainer from '../../src/containers/ModalContainer';
 
@@ -14,14 +14,13 @@ const props = {
       id: '2',
     },
   },
-  render: jest.fn(),
 };
 
 
 describe('testing ModalContainer with opened Modal', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = mount(<ModalContainer.wrappedComponent {...props} />);
+    wrapper = shallow(<ModalContainer.wrappedComponent {...props} />);
   });
   test('renders without crashing', () => {
     expect(wrapper).toBeDefined();
@@ -30,5 +29,16 @@ describe('testing ModalContainer with opened Modal', () => {
   test('should fire ComponentDidMount', () => {
     wrapper.instance().componentDidMount();
     expect(props.ModalStore.getBeer).toHaveBeenCalledWith('2');
+  });
+
+  test('should fire ComponentDidUpdate', () => {
+    wrapper.setProps({
+      match: {
+        params: {
+          id: '1',
+        },
+      },
+    });
+    expect(props.ModalStore.getBeer).toHaveBeenCalledWith('1');
   });
 });

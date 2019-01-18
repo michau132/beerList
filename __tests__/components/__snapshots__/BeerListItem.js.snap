@@ -8,6 +8,8 @@ exports[`<BeerListItem /> component matching snapshot 1`] = `
     <styled.div>
       <Image
         alt="Beer"
+        modal={false}
+        overflow={true}
         src="https://via.placeholder.com/150"
       />
     </styled.div>

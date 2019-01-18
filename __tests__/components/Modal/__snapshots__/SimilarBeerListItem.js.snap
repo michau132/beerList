@@ -8,7 +8,7 @@ exports[`<SimilarBeerListItem /> component matching snapshot 1`] = `
     replace={false}
     to={
       Object {
-        "pathname": "/beer/1",
+        "pathname": "/1",
         "state": Object {
           "modal": true,
         },
@@ -18,6 +18,8 @@ exports[`<SimilarBeerListItem /> component matching snapshot 1`] = `
     <styled.div>
       <Image
         alt="Beer"
+        modal={true}
+        overflow={false}
         src="https://via.placeholder.com/150"
       />
     </styled.div>
