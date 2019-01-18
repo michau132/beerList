@@ -15,7 +15,6 @@ const ErrorWrapper = styled.div`
 
 const withError = Component => (props) => {
   const { error: errorOnModal } = props;
-  console.log(props);
   // error on Modal
   if (errorOnModal) {
     return (

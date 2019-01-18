@@ -38,7 +38,7 @@ const SimilarBeerListItem = ({ id, image_url, name }) => (
   <SimilarBeerListStyle key={id}>
     <Link to={{ pathname: `/${id}`, state: { modal: true } }}>
       <SimilarBeerListImgWrapper>
-        <Image src={image_url} alt={name} />
+        <Image src={image_url} alt={name} modal />
       </SimilarBeerListImgWrapper>
       <BeerName>{name}</BeerName>
     </Link>
