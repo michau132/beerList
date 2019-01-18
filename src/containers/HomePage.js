@@ -34,30 +34,9 @@ class HomePage extends Component {
 
 
   componentDidMount() {
-    const {
-      match, BeerListStore, history,
-    } = this.props;
-    if (match.params && match.params.id && history.action !== 'PUSH') {
-      history.push({
-        state: { modal: true },
-      });
-      BeerListStore.getBeers();
-    }
-
-    if (match.path === '/' && history.action !== 'PUSH') {
-      console.log('jestem tutaj');
-      BeerListStore.getBeers();
-    }
-    console.log(this.props);
+    const { BeerListStore } = this.props;
+    BeerListStore.getBeers();
   }
-
-
-  // componentDidUpdate(prevProps) {
-  //   const {
-  //     match, BeerListStore, history,
-  //   } = this.props;
-  //   if(prevProps.match)
-  // }
 
   handleScroll = () => {
     const { BeerListStore } = this.props;

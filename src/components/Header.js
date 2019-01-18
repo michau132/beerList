@@ -6,6 +6,7 @@ const H1 = styled.h1`
   color: #fdc22a;
   text-transform: uppercase;
   margin-left: 40px;
+  margin-bottom: 30px;
   span {
     color: #b6b6b6;
   }

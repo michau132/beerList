@@ -32,8 +32,9 @@ class ModalSwitch extends Component {
   render() {
     const { location } = this.props;
     const isModal = !!(
-      location.state
-      && location.state.modal
+      location.pathname !== '/'
+      || (location.state
+      && location.state.modal)
     );
     return (
       <Fragment>
