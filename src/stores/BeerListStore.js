@@ -53,10 +53,6 @@ class BeerListStore {
         });
       });
   }
-
-  @action setError = () => {
-    this.errorUrl = true;
-  }
 }
 
 export default new BeerListStore();
