@@ -5,6 +5,7 @@ exports[`<ModalSwitch/> component renders as expected 1`] = `
   <Switch
     location={
       Object {
+        "pathname": "/2",
         "state": Object {
           "modal": true,
         },
@@ -20,6 +21,10 @@ exports[`<ModalSwitch/> component renders as expected 1`] = `
       component={[Function]}
       exact={true}
       path="/:id"
+    />
+    <Route
+      component={[Function]}
+      path="*"
     />
   </Switch>
   <Route

@@ -7,6 +7,7 @@ import ModalContainer from '../../src/containers/ModalContainer';
 
 const props = {
   location: {
+    pathname: '/2',
     state: {
       modal: true,
     },

@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 const StyledWrapper = styled.div`
-  display: grid;
   height: 100vh;
 `;
 

@@ -38,7 +38,6 @@ class ModalSwitch extends Component {
       || (location.state
       && location.state.modal)
     );
-    console.log(this.props);
     return (
       <Fragment>
         <Switch location={isModal ? this.previousLocation : location}>

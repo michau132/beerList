@@ -6,7 +6,13 @@ import Header from '../components/Header';
 
 
 const Main = styled.main`
-  overflow-y: auto;
+  overflow-y: scroll;
+  height: 100%;
+`;
+
+const StyledIsCorrectUrl = styled.p`
+  color: #ff5000;
+  padding: 0 40px;
 `;
 
 @inject('BeerListStore')
@@ -26,14 +32,18 @@ class HomePage extends Component {
 
 
   componentDidMount() {
-    const { BeerListStore, match: { params: { id } } } = this.props;
+    const {
+      BeerListStore,
+      match: { params: { id } },
+      location: { pathname },
+    } = this.props;
     // eslint-disable-next-line no-restricted-globals
-    if (isNaN(id)) {
+    if (!isNaN(id) || pathname === '/') {
+      BeerListStore.getBeers();
+    } else {
       this.setState({
         isCorrectUrl: false,
       });
-    } else {
-      BeerListStore.getBeers();
     }
   }
 
@@ -65,16 +75,20 @@ class HomePage extends Component {
         <Header />
         <BeerList />
         {!isCorrectUrl && (
-        <p>
+        <StyledIsCorrectUrl>
           Cannot get data, provided url at the end does not match number.
-          Correct url should replace
+          You should replace
           {' '}
-          <strong>{`${window.location.hash.substring(2)} `}</strong>
-           with number like
+          <strong>
+            &quot;
+            {`${window.location.hash.substring(2)}`}
+          &quot;
+          </strong>
+            with number like
           {' '}
-          <strong>1</strong>
+          <strong>&quot;12&quot;</strong>
           .
-        </p>
+        </StyledIsCorrectUrl>
         )}
       </Main>
     );

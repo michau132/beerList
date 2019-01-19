@@ -3,7 +3,7 @@
 exports[`testing withError HOC should match snapshot 1`] = `
 <Fragment>
   <styled.p>
-    Cannot get data, check your internet connection
+    Cannot get data, probably beer that you are looking for, does not exist
   </styled.p>
 </Fragment>
 `;

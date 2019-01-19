@@ -13,6 +13,8 @@ const BeerListStore = observable({
 
 const props = {
   BeerListStore,
+  match: { params: { id: 2 } },
+  location: { pathname: '/2' },
 };
 
 describe('testing HomePage with opened Modal', () => {
